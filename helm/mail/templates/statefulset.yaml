@@ -67,6 +67,11 @@ spec:
             - name: smtp
               containerPort: 587
               protocol: TCP
+            {{- if .Values.exporter.enabled }}
+            - name: metrics
+              containerPort: 9154
+              protocol: TCP
+            {{- end }}
           readinessProbe: {{- toYaml .Values.readinessProbe | nindent 12 }}
           livenessProbe: {{- toYaml .Values.livenessProbe | nindent 12 }}
           startupProbe: {{- toYaml .Values.startupProbe | nindent 12 }}

@@ -22,9 +22,16 @@ type: application
 # This is the chart version.
 # The version will be automatically set by the build script in .github/workflows/tags.yml when a
 # new version of the app is released.
-version: v1.0.0
+version: "1.0.0"
 
 # This is the version number of the application being deployed.
 # The version will be automatically set by the build script in .github/workflows/tags.yml when a
 # new version of the app is released.
 appVersion: v1.0.0
+
+dependencies:
+  - name: monitoring
+    alias: monitor
+    version: "0.1.1"
+    repository: oci://657255803789.dkr.ecr.eu-central-1.amazonaws.com
+    condition: exporter.enabled

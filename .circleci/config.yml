@@ -1,0 +1,24 @@
+version: 2.1
+orbs:
+  helm-bp: insitu/helm-build-and-push@1.1.2
+
+workflows:
+  build:
+    jobs:
+      - helm-bp/aws-ecr-login:
+          context:
+            - aws_production
+      - helm-bp/helm-build:
+          matrix:
+            parameters:
+              chart: helm/mail
+          registry: 657255803789.dkr.ecr.eu-central-1.amazonaws.com
+          requires:
+            - helm-bp/aws-ecr-login
+      - helm-bp/ecr-push:
+          matrix:
+            parameters:
+              chart: postfix
+          registry: 657255803789.dkr.ecr.eu-central-1.amazonaws.com
+          requires:
+            - helm-bp/helm-build
