@@ -1,5 +1,5 @@
 apiVersion: v2
-name: mail
+name: postfix
 description: An outgoing SMTP mail relay for your applications in Kubernetes cluster
 icon: https://bokysan.github.io/docker-postfix/postfix.png
 home: https://github.com/bokysan/docker-postfix
