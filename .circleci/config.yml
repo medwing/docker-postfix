@@ -9,7 +9,7 @@ workflows:
           context:
             - aws_production
       - helm-bp/helm-build:
-          chart: "helm/mail"
+          chart: postfix
           registry: 657255803789.dkr.ecr.eu-central-1.amazonaws.com
           requires:
             - helm-bp/aws-ecr-login
