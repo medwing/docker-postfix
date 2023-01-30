@@ -9,16 +9,12 @@ workflows:
           context:
             - aws_production
       - helm-bp/helm-build:
-          matrix:
-            parameters:
-              chart: helm/mail
+          chart: "helm/mail"
           registry: 657255803789.dkr.ecr.eu-central-1.amazonaws.com
           requires:
             - helm-bp/aws-ecr-login
       - helm-bp/ecr-push:
-          matrix:
-            parameters:
-              chart: postfix
+          chart: postfix
           registry: 657255803789.dkr.ecr.eu-central-1.amazonaws.com
           requires:
             - helm-bp/helm-build
